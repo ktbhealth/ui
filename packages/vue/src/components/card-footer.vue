@@ -5,7 +5,7 @@ import { cn } from "../lib/utils";
 const props = defineProps<{ class?: HTMLAttributes["class"] }>();
 const classes = computed(() =>
 	cn(
-		"flex items-center rounded-b-xl border-t bg-muted/50 p-(--card-spacing)",
+		"flex items-center rounded-b-xl border-t bg-muted/50 p-[var(--card-spacing)]",
 		props.class,
 	),
 );

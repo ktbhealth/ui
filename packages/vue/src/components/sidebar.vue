@@ -19,7 +19,7 @@ const sidebar = useSidebar();
 
 const classes = computed(() =>
 	cn(
-		"flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground",
+		"flex h-full w-[var(--sidebar-width)] flex-col bg-sidebar text-sidebar-foreground",
 		props.class,
 	),
 );
@@ -30,7 +30,7 @@ const classes = computed(() =>
 		<SheetContentComponent
 			data-slot="sidebar"
 			:data-mobile="true"
-			class="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+			class="w-[var(--sidebar-width)] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
 			:side="side"
 		>
 			<div :class="classes">
@@ -47,11 +47,11 @@ const classes = computed(() =>
 		:data-side="side"
 		:class="cn(
 			'group peer hidden text-sidebar-foreground md:block',
-			'fixed inset-y-0 z-10 h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear',
+			'fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear',
 			side === 'left' ? 'left-0' : 'right-0',
 			variant === 'floating' || variant === 'inset'
-				? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+--spacing(4)+2px)]'
-				: 'group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l',
+				? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+calc(var(--spacing, 0.25rem) * 4)+2px)]'
+				: 'group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r group-data-[side=right]:border-l',
 			props.class,
 		)"
 	>

@@ -6,7 +6,7 @@ import { cn } from "../lib/utils";
 const props = defineProps<{ class?: HTMLAttributes["class"] }>();
 const classes = computed(() =>
 	cn(
-		"origin-(--transform-origin) relative h-(--positioner-height) w-full overflow-hidden data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:zoom-in-90 md:w-(--positioner-width)",
+		"origin-[var(--transform-origin)] relative h-[var(--positioner-height)] w-full overflow-hidden data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:zoom-in-90 md:w-[var(--positioner-width)]",
 		props.class,
 	),
 );

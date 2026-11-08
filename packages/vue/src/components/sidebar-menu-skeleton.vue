@@ -19,6 +19,6 @@ const classes = computed(() =>
 <template>
 	<div data-slot="sidebar-menu-skeleton" data-sidebar="menu-skeleton" :class="classes">
 		<Skeleton v-if="showIcon" class="size-4 rounded-md" data-sidebar="menu-skeleton-icon" />
-		<Skeleton class="h-4 max-w-(--skeleton-width) flex-1" />
+		<Skeleton class="h-4 max-w-[var(--skeleton-width)] flex-1" />
 	</div>
 </template>

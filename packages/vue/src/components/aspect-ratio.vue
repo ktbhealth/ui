@@ -11,7 +11,7 @@ const props = withDefaults(
 	{ ratio: 1 },
 );
 
-const classes = computed(() => cn("relative aspect-(--ratio)", props.class));
+const classes = computed(() => cn("relative aspect-[var(--ratio)]", props.class));
 const style = computed(() => ({ "--ratio": props.ratio }));
 </script>
 

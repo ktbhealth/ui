@@ -6,7 +6,7 @@ import { cn } from "../lib/utils";
 const props = defineProps<{ class?: HTMLAttributes["class"] }>();
 const classes = computed(() =>
 	cn(
-		"no-scrollbar max-h-[min(calc(--spacing(72)---spacing(9)),calc(var(--available-height)---spacing(9)))] scroll-py-1 overflow-y-auto overscroll-contain p-1 data-empty:p-0",
+		"no-scrollbar max-h-[min(calc(calc(var(--spacing, 0.25rem) * 72)-calc(var(--spacing, 0.25rem) * 9)),calc(var(--available-height)-calc(var(--spacing, 0.25rem) * 9)))] scroll-py-1 overflow-y-auto overscroll-contain p-1 data-empty:p-0",
 		props.class,
 	),
 );

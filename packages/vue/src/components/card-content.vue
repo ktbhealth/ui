@@ -3,7 +3,7 @@ import { computed, type HTMLAttributes } from "vue";
 import { cn } from "../lib/utils";
 
 const props = defineProps<{ class?: HTMLAttributes["class"] }>();
-const classes = computed(() => cn("px-(--card-spacing)", props.class));
+const classes = computed(() => cn("px-[var(--card-spacing)]", props.class));
 </script>
 
 <template>
