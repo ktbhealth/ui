@@ -20,7 +20,10 @@
 			"./packages/react/src/hooks/*.tsx"
 		],
 		"./react": "./packages/react/src/index.ts",
-		"./vue": "./packages/vue/src/index.ts"
+		"./vue": "./packages/vue/src/index.ts",
+		"./tokens.css": "./packages/tailwind/src/generated/tokens.css",
+		"./tokens.ts": "./packages/tailwind/src/generated/tokens.ts",
+		"./tokens.json": "./packages/tailwind/tokens/tokens.json"
 	},
 	"dependencies": {
 		"tailwindcss": "^4.3.5",
