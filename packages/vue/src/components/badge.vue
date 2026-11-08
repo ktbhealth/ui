@@ -35,7 +35,7 @@ import { Primitive, type PrimitiveProps } from "reka-ui";
 import { computed, type HTMLAttributes } from "vue";
 import { cn } from "../lib/utils";
 
-export interface Props extends PrimitiveProps {
+export interface Props extends /* @vue-ignore */ PrimitiveProps {
 	class?: HTMLAttributes["class"];
 	variant?: BadgeVariants["variant"];
 	as?: PrimitiveProps["as"];

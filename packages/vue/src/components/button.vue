@@ -49,7 +49,7 @@ import { Primitive, type PrimitiveProps } from "reka-ui";
 import { cn } from "../lib/utils";
 import { computed, type HTMLAttributes } from "vue";
 
-export interface Props extends PrimitiveProps {
+export interface Props extends /* @vue-ignore */ PrimitiveProps {
 	class?: HTMLAttributes["class"];
 	variant?: ButtonVariants["variant"];
 	size?: ButtonVariants["size"];
