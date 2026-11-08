@@ -23,7 +23,8 @@
 		"./vue": "./packages/vue/src/index.ts",
 		"./tokens.css": "./packages/tailwind/src/generated/tokens.css",
 		"./tokens.ts": "./packages/tailwind/src/generated/tokens.ts",
-		"./tokens.json": "./packages/tailwind/tokens/tokens.json"
+		"./tokens.json": "./packages/tailwind/tokens/tokens.json",
+		"./tokens": "./packages/tailwind/src/generated/tokens.ts"
 	},
 	"dependencies": {
 		"tailwindcss": "^4.3.5",
