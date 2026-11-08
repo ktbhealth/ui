@@ -1,0 +1,15 @@
+{
+	"name": "@ktbhealth/ui-monorepo",
+	"private": true,
+	"type": "module",
+	"workspaces": ["packages/*"],
+	"scripts": {
+		"test": "bunx vitest run",
+		"check": "bunx vp check"
+	},
+	"devDependencies": {
+		"typescript": "^5.9.0",
+		"vitest": "^3.2.4"
+	},
+	"packageManager": "bun@1.4.4"
+}
