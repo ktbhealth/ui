@@ -32,9 +32,9 @@ export function Toast({
 			{toast ? (
 				<output
 					key={toast.id}
-					className="pointer-events-auto flex items-center gap-3 rounded-xl bg-neutral-900 px-4 py-3 text-sm text-white shadow-lg ring-1 ring-black/10"
+					className="pointer-events-auto flex items-center gap-3 rounded-xl border bg-popover px-4 py-3 text-sm text-popover-foreground shadow-lg"
 				>
-					<span className="flex size-5 items-center justify-center rounded-full bg-primary text-xs font-bold">
+					<span className="flex size-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
 						✓
 					</span>
 					<span>{toast.text}</span>
@@ -45,7 +45,7 @@ export function Toast({
 								toast.onAction?.();
 								onClose();
 							}}
-							className="rounded-md px-2 py-0.5 text-xs font-medium text-primary-foreground/70 underline-offset-2 hover:underline"
+							className="rounded-md px-2 py-0.5 text-xs font-medium text-primary underline-offset-2 hover:underline"
 						>
 							{toast.actionLabel}
 						</button>
@@ -54,7 +54,7 @@ export function Toast({
 						type="button"
 						onClick={onClose}
 						aria-label="Dismiss notification"
-						className="text-neutral-400 hover:text-white"
+						className="text-muted-foreground hover:text-foreground"
 					>
 						×
 					</button>
