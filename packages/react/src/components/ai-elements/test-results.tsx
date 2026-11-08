@@ -151,7 +151,7 @@ export const TestResultsProgress = ({
 	const failedPercent = (summary.failed / summary.total) * 100;
 
 	return (
-		<div className={cn("space-y-2", className)} {...props}>
+		<div className={cn("space-y-2 px-4 pt-3", className)} {...props}>
 			{children ?? (
 				<>
 					<div className="flex h-2 overflow-hidden rounded-full bg-muted">
