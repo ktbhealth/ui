@@ -23,7 +23,7 @@ export default defineConfig({
 		css({
 			filename: "tokens.css",
 			variableName: (t) =>
-				`ktb-${t.id.split(".").pop()!.replace(/_/g, "-")}`,
+				`--ktb-${t.id.split(".").pop()!.replace(/_/g, "-")}`,
 			modeSelectors: [{ mode: "dark", selectors: [".dark"] }],
 			transform: rawValue,
 		}),
