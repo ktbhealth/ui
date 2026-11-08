@@ -6,12 +6,21 @@
 	"description": "KTB Health design system: Tailwind v4 tokens + React (shadcn) and Vue (shadcn-vue) components",
 	"exports": {
 		"./styles/globals.css": "./packages/tailwind/src/globals.css",
-		"./components/*": "./packages/react/src/components/*",
-		"./hooks/*": "./packages/react/src/hooks/*",
-		"./lib/*": "./packages/react/src/lib/*",
+		"./tailwind/globals.css": "./packages/tailwind/src/globals.css",
+		"./components/*": [
+			"./packages/react/src/components/*.tsx",
+			"./packages/react/src/components/*.ts"
+		],
+		"./lib/*": [
+			"./packages/react/src/lib/*.ts",
+			"./packages/react/src/lib/*.tsx"
+		],
+		"./hooks/*": [
+			"./packages/react/src/hooks/*.ts",
+			"./packages/react/src/hooks/*.tsx"
+		],
 		"./react": "./packages/react/src/index.ts",
-		"./vue": "./packages/vue/src/index.ts",
-		"./tailwind/globals.css": "./packages/tailwind/src/globals.css"
+		"./vue": "./packages/vue/src/index.ts"
 	},
 	"dependencies": {
 		"tailwindcss": "^4.3.5",
