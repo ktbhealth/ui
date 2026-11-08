@@ -100,7 +100,7 @@ function setYear(y: number) {
 	emits("update:month", new Date(y, viewMonth.value.getMonth(), 1));
 }
 
-const classes = computed(() => cn("group/calendar bg-background p-2 [--cell-radius:var(--radius-md)] [--cell-size:calc(var(--spacing, 0.25rem) * 7)] w-fit", props.class));
+const classes = computed(() => cn("group/calendar bg-background p-2 [--cell-radius:var(--radius-md)] [--cell-size:calc(var(--spacing,0.25rem)*7)] w-fit", props.class));
 const navBtn = cn(buttonVariants({ variant: "ghost", size: "icon" }), "size-[var(--cell-size)] p-0 select-none aria-disabled:opacity-50");
 </script>
 

@@ -50,7 +50,7 @@ const classes = computed(() =>
 			'fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear',
 			side === 'left' ? 'left-0' : 'right-0',
 			variant === 'floating' || variant === 'inset'
-				? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+calc(var(--spacing, 0.25rem) * 4)+2px)]'
+				? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+calc(var(--spacing,0.25rem)*4)+2px)]'
 				: 'group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r group-data-[side=right]:border-l',
 			props.class,
 		)"
