@@ -84,7 +84,7 @@ provide(toggleGroupKey, context);
 		:data-variant="variant"
 		:data-size="size"
 		:data-orientation="orientation"
-		:data-spacing="spacing"
+		:data-spacing="spacing === 0 ? 'none' : spacing"
 		:class="classes"
 		:style="style"
 		:type="type"
