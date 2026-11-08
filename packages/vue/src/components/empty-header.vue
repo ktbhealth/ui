@@ -1,0 +1,13 @@
+<script setup lang="ts">
+import { computed, type HTMLAttributes } from "vue";
+import { cn } from "../lib/utils";
+
+const props = defineProps<{ class?: HTMLAttributes["class"] }>();
+const classes = computed(() => cn("flex max-w-sm flex-col items-center gap-2", props.class));
+</script>
+
+<template>
+	<div data-slot="empty-header" :class="classes">
+		<slot />
+	</div>
+</template>
