@@ -2,6 +2,10 @@
 	"name": "@ktbhealth/ui-vue",
 	"version": "0.1.0",
 	"type": "module",
+	"scripts": {
+		"test": "vitest run",
+		"typecheck": "vue-tsc --noEmit"
+	},
 	"exports": {
 		".": "./src/index.ts",
 		"./styles.css": "./src/styles.css",

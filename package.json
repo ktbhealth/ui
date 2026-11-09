@@ -2,6 +2,9 @@
 	"name": "@ktbhealth/ui",
 	"version": "0.1.0",
 	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
 	"type": "module",
 	"description": "KTB Health design system: Tailwind v4 tokens + React (shadcn) and Vue (shadcn-vue) components",
 	"exports": {
