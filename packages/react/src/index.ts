@@ -5,10 +5,21 @@ export * from "./hooks/use-highlighted-code";
 export * from "./components/accordion";
 export * from "./components/alert-dialog";
 export * from "./components/alert";
-export * from "./components/app-dialog";
-export * from "./components/app-toast";
+export { Dialog as AppDialog } from "./components/app-dialog";
+export { Toast as AppToast } from "./components/app-toast";
+export type { ToastData as AppToastData } from "./components/app-toast";
 export * from "./components/aspect-ratio";
-export * from "./components/attachment";
+export {
+	Attachment as AppAttachment,
+	AttachmentGroup,
+	AttachmentMedia,
+	AttachmentContent,
+	AttachmentTitle,
+	AttachmentDescription,
+	AttachmentActions,
+	AttachmentAction,
+	AttachmentTrigger,
+} from "./components/attachment";
 export * from "./components/avatar";
 export * from "./components/badge";
 export * from "./components/breadcrumb";
@@ -20,7 +31,16 @@ export * from "./components/card";
 export * from "./components/carousel";
 export * from "./components/chart";
 export * from "./components/checkbox";
-export * from "./components/code-block";
+export {
+	CodeBlock as AppCodeBlock,
+	CodeBlockHeader as AppCodeBlockHeader,
+	CodeBlockTitle as AppCodeBlockTitle,
+	CodeBlockActions as AppCodeBlockActions,
+	CodeBlockCopyButton as AppCodeBlockCopyButton,
+	CodeBlockContent as AppCodeBlockContent,
+	CodeBlockLine as AppCodeBlockLine,
+	CodeBlockFooter as AppCodeBlockFooter,
+} from "./components/code-block";
 export * from "./components/collapsible";
 export * from "./components/combobox";
 export * from "./components/command";
@@ -43,7 +63,14 @@ export * from "./components/language-toggle";
 export * from "./components/marker";
 export * from "./components/menubar";
 export * from "./components/message-scroller";
-export * from "./components/message";
+export {
+	MessageGroup as AppMessageGroup,
+	Message as AppMessage,
+	MessageAvatar as AppMessageAvatar,
+	MessageContent as AppMessageContent,
+	MessageFooter as AppMessageFooter,
+	MessageHeader as AppMessageHeader,
+} from "./components/message";
 export * from "./components/native-select";
 export * from "./components/navigation-menu";
 export * from "./components/pagination";
@@ -77,7 +104,30 @@ export * from "./components/ai-elements/audio-player";
 export * from "./components/ai-elements/canvas";
 export * from "./components/ai-elements/chain-of-thought";
 export * from "./components/ai-elements/checkpoint";
-export * from "./components/ai-elements/code-block";
+export {
+	highlightCode as aiHighlightCode,
+	CodeBlockContainer,
+	CodeBlockHeader,
+	CodeBlockTitle,
+	CodeBlockFilename,
+	CodeBlockActions,
+	CodeBlockContent,
+	CodeBlock,
+	CodeBlockCopyButton,
+	CodeBlockLanguageSelector,
+	CodeBlockLanguageSelectorTrigger,
+	CodeBlockLanguageSelectorValue,
+	CodeBlockLanguageSelectorContent,
+	CodeBlockLanguageSelectorItem,
+} from "./components/ai-elements/code-block";
+export type {
+	CodeBlockCopyButtonProps,
+	CodeBlockLanguageSelectorProps,
+	CodeBlockLanguageSelectorTriggerProps,
+	CodeBlockLanguageSelectorValueProps,
+	CodeBlockLanguageSelectorContentProps,
+	CodeBlockLanguageSelectorItemProps,
+} from "./components/ai-elements/code-block";
 export * from "./components/ai-elements/commit";
 export * from "./components/ai-elements/confirmation";
 export * from "./components/ai-elements/connection";
