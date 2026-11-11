@@ -1,0 +1,14 @@
+{
+	"name": "@ktbhealth/brand",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "KTB Health brand assets (logo, Meet backgrounds) and the script that generates them",
+	"scripts": {
+		"build": "node scripts/build.mjs"
+	},
+	"devDependencies": {
+		"@fontsource/geist": "^5.3.0",
+		"opentype.js": "^2.0.0"
+	}
+}

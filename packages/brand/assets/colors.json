@@ -1,0 +1,10 @@
+{
+	"primary": "#5d87c8",
+	"ink": "#333333",
+	"white": "#ffffff",
+	"background": "#ffffff",
+	"accent": "#dcf2ff",
+	"backgroundDark": "#161616",
+	"accentDark": "#1e3a8b",
+	"source": "packages/tailwind tokens (oklch converted to sRGB hex)"
+}

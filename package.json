@@ -22,6 +22,7 @@
 			"./packages/react/src/hooks/*.ts",
 			"./packages/react/src/hooks/*.tsx"
 		],
+		"./brand/*": "./packages/brand/assets/*",
 		"./react": "./packages/react/src/index.ts",
 		"./vue": "./packages/vue/src/index.ts",
 		"./tokens.css": "./packages/tailwind/src/generated/tokens.css",
