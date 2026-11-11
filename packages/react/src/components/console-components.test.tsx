@@ -8,6 +8,7 @@ import { PageHeader } from "./page-header.tsx";
 import { DataToolbar } from "./data-toolbar.tsx";
 import { PaginationMeta, PaginationRange } from "./pagination-meta.tsx";
 import { ConfirmDialog } from "./confirm-dialog.tsx";
+import { SearchInput } from "./search-input.tsx";
 
 afterEach(cleanup);
 
@@ -185,5 +186,24 @@ describe("ConfirmDialog", () => {
 			fireEvent.click(screen.getByText("Cancel"));
 		});
 		expect(onOpenChange.mock.calls[0]?.[0]).toBe(false);
+	});
+});
+
+describe("SearchInput", () => {
+	it("renders a search input with icon and forwards props", () => {
+		const onChange = vi.fn();
+		render(
+			createElement(SearchInput, {
+				placeholder: "Search patients",
+				"aria-label": "Search",
+				onChange,
+			}),
+		);
+		const input = screen.getByLabelText("Search") as HTMLInputElement;
+		expect(input.type).toBe("search");
+		expect(input.placeholder).toBe("Search patients");
+		expect(document.querySelector('[data-slot="search-input-icon"]')).toBeTruthy();
+		fireEvent.change(input, { target: { value: "ana" } });
+		expect(onChange).toHaveBeenCalled();
 	});
 });
