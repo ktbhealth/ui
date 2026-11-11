@@ -7,6 +7,9 @@ import { DayPicker, getDefaultClassNames, type DayButton, type Locale } from "re
 import { Button, buttonVariants } from "@ktbhealth/ui/components/button";
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon } from "lucide-react";
 
+/** BCP-47 locale used for date formatting when no `locale` is provided. */
+const DEFAULT_LOCALE_CODE = "en-US";
+
 function Calendar({
 	className,
 	classNames,
@@ -34,7 +37,8 @@ function Calendar({
 			captionLayout={captionLayout}
 			locale={locale}
 			formatters={{
-				formatMonthDropdown: (date) => date.toLocaleString(locale?.code, { month: "short" }),
+				formatMonthDropdown: (date) =>
+					date.toLocaleString(locale?.code ?? DEFAULT_LOCALE_CODE, { month: "short" }),
 				...formatters,
 			}}
 			classNames={{
@@ -162,7 +166,7 @@ function CalendarDayButton({
 		<Button
 			variant="ghost"
 			size="icon"
-			data-day={day.date.toLocaleDateString(locale?.code)}
+			data-day={day.date.toLocaleDateString(locale?.code ?? DEFAULT_LOCALE_CODE)}
 			data-selected-single={
 				modifiers.selected &&
 				!modifiers.range_start &&

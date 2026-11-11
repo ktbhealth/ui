@@ -1,6 +1,6 @@
 {
 	"name": "@ktbhealth/brand",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"private": true,
 	"type": "module",
 	"description": "KTB Health brand assets (logo, Meet backgrounds) and the script that generates them",
