@@ -61,7 +61,7 @@
     },
     "packages/brand": {
       "name": "@ktbhealth/brand",
-      "version": "0.1.0",
+      "version": "0.1.4",
       "devDependencies": {
         "@fontsource/geist": "^5.3.0",
         "opentype.js": "^2.0.0",
@@ -69,7 +69,7 @@
     },
     "packages/react": {
       "name": "@ktbhealth/ui-react",
-      "version": "0.1.0",
+      "version": "0.1.4",
       "dependencies": {
         "@base-ui/react": "^1.9.0",
         "@radix-ui/react-use-controllable-state": "^1.3.0",
@@ -123,7 +123,7 @@
     },
     "packages/tailwind": {
       "name": "@ktbhealth/tailwind",
-      "version": "0.1.0",
+      "version": "0.1.4",
       "dependencies": {
         "shadcn": "^4.23.0",
         "tailwindcss": "^4.3.5",
@@ -136,7 +136,7 @@
     },
     "packages/vue": {
       "name": "@ktbhealth/ui-vue",
-      "version": "0.1.0",
+      "version": "0.1.4",
       "dependencies": {
         "@vueuse/core": "^15.0.0",
         "class-variance-authority": "^0.7.1",

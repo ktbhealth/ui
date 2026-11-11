@@ -43,9 +43,9 @@ map, so the `workspaces` field does not affect the published artifact.
 There is no registry publish — releases are git tags. Checklist:
 
 1. Bump `version` in the root `package.json` **and** in each of
-   `packages/{tailwind,react,vue}/package.json` to the same `X.Y.Z`.
-   (All are currently `0.1.0`; tags have already moved ahead — see
-   "Tag history" below. Keep them in sync going forward.)
+   `packages/{tailwind,react,vue,brand}/package.json` to the same `X.Y.Z`.
+   (All are at `0.1.4` since that release — see "Tag history" below.
+   Keep them in sync.)
 2. If `packages/tailwind/tokens/tokens.json` or
    `packages/tailwind/src/globals.css` changed, run
    `cd packages/tailwind && bun run build:tokens` and commit the
@@ -68,7 +68,8 @@ There is no registry publish — releases are git tags. Checklist:
 | `v0.1.0@{react,tailwind,vue}` | `4b86028` | first tagged release            |
 | `v0.1.1@react`   | `0385ce0` | react-only fix                        |
 | `v0.1.2@react`   | `7303a67` | react-only fix                        |
-| `v0.1.3@react`   | `fb49ba6` | react-only feature (current pin)      |
+| `v0.1.3@react`   | `fb49ba6` | react-only feature                    |
+| `v0.1.4@{react,tailwind,vue}` | release commit | brand package (`@ktbhealth/ui/brand/*`), vue typecheck fixes; versions synced to 0.1.4 |
 
 Flavors may be tagged independently when only one library changed;
 prefer tagging all three together so versions stay aligned.
