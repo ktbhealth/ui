@@ -2,6 +2,7 @@
 import { Toaster } from "vue-sonner";
 import { computed, type HTMLAttributes } from "vue";
 import { useColorMode } from "@vueuse/core";
+import { cn } from "../lib/utils";
 
 const props = withDefaults(
 	defineProps<{
@@ -31,7 +32,7 @@ const resolvedTheme = computed(() => (props.theme === "system" ? system.value : 
 <template>
 	<Toaster
 		:data-slot="'sonner'"
-		:class="class"
+		:class="cn(props.class)"
 		:position="position"
 		:rich-colors="richColors"
 		:close-button="closeButton"
