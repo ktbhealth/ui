@@ -44,7 +44,9 @@ export {
 export * from "./components/collapsible";
 export * from "./components/combobox";
 export * from "./components/command";
+export * from "./components/confirm-dialog";
 export * from "./components/context-menu";
+export * from "./components/data-toolbar";
 export * from "./components/dialog";
 export * from "./components/direction";
 export * from "./components/drawer";
@@ -73,7 +75,10 @@ export {
 } from "./components/message";
 export * from "./components/native-select";
 export * from "./components/navigation-menu";
+export * from "./components/page-container";
+export * from "./components/page-header";
 export * from "./components/pagination";
+export * from "./components/pagination-meta";
 export * from "./components/popover";
 export * from "./components/progress";
 export * from "./components/questionnaire";
