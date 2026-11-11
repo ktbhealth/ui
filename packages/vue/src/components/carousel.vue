@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import emblaCarouselVue from "embla-carousel-vue";
-import { computed, onMounted, onUnmounted, provide, ref, type HTMLAttributes, type InjectionKey } from "vue";
+import type { EmblaCarouselType } from "embla-carousel";
+import { computed, onMounted, onUnmounted, provide, ref, type HTMLAttributes, type InjectionKey, type Ref } from "vue";
 import { cn } from "../lib/utils";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-vue-next";
 import { buttonVariants } from "./button.vue";
 
-const [emblaRef, emblaApi] = emblaCarouselVue({
+// Explicit tuple type: inferring it goes through embla-carousel-vue's own
+// copy of embla-carousel, which vue-tsc cannot name portably (TS2742).
+const [emblaRef, emblaApi]: [Ref<HTMLElement | undefined>, Ref<EmblaCarouselType | undefined>] = emblaCarouselVue({
 	loop: false,
 	align: "start",
 });
@@ -20,6 +23,16 @@ const props = withDefaults(
 	}>(),
 	{ orientation: "horizontal", autoplay: false },
 );
+
+defineSlots<{
+	default?(props: {
+		canScrollPrev: boolean;
+		canScrollNext: boolean;
+		scrollPrev: () => void;
+		scrollNext: () => void;
+		api: EmblaCarouselType | undefined;
+	}): unknown;
+}>();
 
 const canScrollPrev = ref(false);
 const canScrollNext = ref(false);
