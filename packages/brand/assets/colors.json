@@ -2,9 +2,9 @@
 	"primary": "#5d87c8",
 	"ink": "#333333",
 	"white": "#ffffff",
+	"background": "#ffffff",
 	"accent": "#dcf2ff",
-	"deep": "#0b1a31",
-	"deepAlt": "#0e2c5a",
-	"soft": "#f7faff",
+	"backgroundDark": "#161616",
+	"accentDark": "#1e3a8b",
 	"source": "packages/tailwind tokens (oklch converted to sRGB hex)"
 }

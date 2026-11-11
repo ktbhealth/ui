@@ -28,12 +28,15 @@ const tokensCss = readFileSync(
 	"utf8",
 );
 const lightBlock = tokensCss.slice(tokensCss.indexOf(":root"), tokensCss.indexOf(".dark"));
-const token = (name) => {
-	const m = lightBlock.match(new RegExp(`--ktb-${name}:\\s*oklch\\(([^)]+)\\)`));
+const darkBlock = tokensCss.slice(tokensCss.indexOf(".dark"));
+const readToken = (block, name) => {
+	const m = block.match(new RegExp(`--ktb-${name}:\\s*oklch\\(([^)]+)\\)`));
 	if (!m) throw new Error(`token --ktb-${name} not found`);
 	const [l, c, h] = m[1].trim().split(/\s+/).map(Number);
 	return { l, c, h: h ?? 0 };
 };
+const token = (name) => readToken(lightBlock, name);
+const tokenDark = (name) => readToken(darkBlock, name);
 
 function oklchToHex({ l, c, h }) {
 	const a = c * Math.cos((h * Math.PI) / 180);
@@ -54,15 +57,15 @@ function oklchToHex({ l, c, h }) {
 }
 
 const primaryTok = token("primary");
+// Every color is a design token (light theme unless noted). Nothing is invented.
 const COLORS = {
-	primary: oklchToHex(primaryTok),
-	ink: oklchToHex(token("foreground")),
+	primary: oklchToHex(primaryTok), // --primary
+	ink: oklchToHex(token("foreground")), // --foreground
 	white: "#ffffff",
-	accent: oklchToHex(token("accent")),
-	// Brand-hue tints/shades derived from the primary hue (same chroma family).
-	deep: oklchToHex({ l: 0.22, c: 0.05, h: primaryTok.h }),
-	deepAlt: oklchToHex({ l: 0.3, c: 0.09, h: primaryTok.h }),
-	soft: oklchToHex({ l: 0.985, c: 0.008, h: primaryTok.h }),
+	background: oklchToHex(token("background")), // --background
+	accent: oklchToHex(token("accent")), // --accent
+	backgroundDark: oklchToHex(tokenDark("background")), // --background (dark theme)
+	accentDark: oklchToHex(tokenDark("accent")), // --accent (dark theme)
 };
 
 // ---------- mark: the logo in the landing page header ----------
@@ -180,11 +183,11 @@ const rings = (stroke, op) => `
 	</g>`;
 
 const lightBg = {
-	defs: `<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${COLORS.soft}"/><stop offset="1" stop-color="${COLORS.accent}"/></linearGradient>`,
+	defs: `<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${COLORS.background}"/><stop offset="1" stop-color="${COLORS.accent}"/></linearGradient>`,
 	fill: "url(#g)",
 };
 const darkBg = {
-	defs: `<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${COLORS.deep}"/><stop offset="1" stop-color="${COLORS.deepAlt}"/></linearGradient>`,
+	defs: `<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${COLORS.backgroundDark}"/><stop offset="1" stop-color="${COLORS.accentDark}"/></linearGradient>`,
 	fill: "url(#g)",
 };
 const primaryBg = { fill: COLORS.primary };

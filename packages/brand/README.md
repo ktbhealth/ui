@@ -36,7 +36,7 @@ the same without installing the font.
   Minimum size: 24 px tall for the mark, 96 px wide for the horizontal logo.
 - Use the regular version on light backgrounds and the inverse version on
   dark or brand-blue backgrounds.
-- Colors come from the design tokens (`packages/tailwind`); `colors.json`
+- Every color is a design token (`packages/tailwind`, light and dark theme); `colors.json`
   is generated from them, never edited by hand.
 
 ## Video-call backgrounds
