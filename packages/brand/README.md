@@ -29,7 +29,8 @@ the same without installing the font.
 
 ## Rules
 
-- The mark is the product icon (open book + medical cross). Do not
+- The mark is the logo from the landing page header: the `book-plus` icon
+  (lucide, ISC license) on a rounded tile in the primary color. Do not
   recolor, stretch, rotate or add effects.
 - Keep clear space around the lockup equal to the height of the "K".
   Minimum size: 24 px tall for the mark, 96 px wide for the horizontal logo.

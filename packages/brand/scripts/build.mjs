@@ -8,8 +8,8 @@
 //   render identically without any font installed.
 // - PNGs are rendered with ImageMagick (`magick`, librsvg delegate).
 //
-// The mark is the existing KTB Health product icon (open book + medical
-// cross); this script only standardizes it into logo lockups and backgrounds.
+// The mark is the logo from the landing page header (website-draft); this
+// script only standardizes it into logo files and video-call backgrounds.
 import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -65,19 +65,24 @@ const COLORS = {
 	soft: oklchToHex({ l: 0.985, c: 0.008, h: primaryTok.h }),
 };
 
-// ---------- mark (the product icon, on a 64 grid) ----------
-// Same geometry as the 32 grid favicon, scaled x2.
-const markSvgInner = ({ tile, book }) => `
-	<rect width="64" height="64" rx="14" fill="${tile}"/>
-	<path d="M32 14c-6.4 0-11 2-14 5.2V48c3-3.2 7.6-5.2 14-5.2s11 2 14 5.2V19.2C43 16 38.4 14 32 14z" fill="${book}" opacity=".95"/>
-	<path d="M32 14v28.8" stroke="${tile}" stroke-width="3.2"/>
-	<path d="M41 9v10M36 14h10" stroke="${tile}" stroke-width="9" stroke-linecap="round"/>
-	<path d="M41 9v10M36 14h10" stroke="${book}" stroke-width="3.6" stroke-linecap="round"/>`;
+// ---------- mark: the logo in the landing page header ----------
+// A rounded tile in the primary color (rounded-lg on a 32px box = 25% radius)
+// holding the lucide "book-plus" icon (ISC license) at 20/32 of the tile.
+const BOOK_PLUS = [
+	"M12 7v6",
+	"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20",
+	"M9 10h6",
+];
+const markSvgInner = ({ tile, icon }) => `
+	<rect width="64" height="64" rx="16" fill="${tile}"/>
+	<g transform="translate(12 12) scale(${40 / 24})" fill="none" stroke="${icon}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+		${BOOK_PLUS.map((d) => `<path d="${d}"/>`).join("\n\t\t")}
+	</g>`;
 
-const mark = { tile: COLORS.primary, book: COLORS.white };
-const markInverse = { tile: COLORS.white, book: COLORS.primary };
+const mark = { tile: COLORS.primary, icon: COLORS.white };
+const markInverse = { tile: COLORS.white, icon: COLORS.primary };
 
-// ---------- wordmark outlines (Geist) ----------
+// ---------- wordmark outlines (Geist bold, tracking-tight like the landing) ----------
 const fontFile = (w) =>
 	require.resolve(`@fontsource/geist/files/geist-latin-${w}-normal.woff`);
 const loadFont = (w) => {
@@ -85,45 +90,51 @@ const loadFont = (w) => {
 	return opentype.parse(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength));
 };
 const bold = loadFont(700);
-const regular = loadFont(400);
 
-/** Returns { d, width, top, bottom } of "KTB" (bold) + " Health" (regular). */
+/** Outlines "KTB Health" in bold with -0.025em tracking and font kerning. */
 function wordmark(size) {
-	const ktb = bold.getPath("KTB", 0, 0, size);
-	const gap = size * 0.28;
-	const x2 = bold.getAdvanceWidth("KTB", size) + gap;
-	const health = regular.getPath("Health", x2, 0, size);
-	const b1 = ktb.getBoundingBox();
-	const b2 = health.getBoundingBox();
+	const glyphs = bold.stringToGlyphs("KTB Health");
+	const scale = size / bold.unitsPerEm;
+	const tracking = -0.025 * size;
+	let x = 0;
+	const parts = [];
+	const boxes = [];
+	glyphs.forEach((g, i) => {
+		const p = g.getPath(x, 0, size);
+		if (p.commands.length) {
+			parts.push(p.toPathData(2));
+			boxes.push(p.getBoundingBox());
+		}
+		let adv = g.advanceWidth * scale;
+		if (i < glyphs.length - 1) adv += bold.getKerningValue(g, glyphs[i + 1]) * scale + tracking;
+		x += adv;
+	});
 	return {
-		ktb: ktb.toPathData(2),
-		health: health.toPathData(2),
-		width: Math.max(b1.x2, b2.x2) - Math.min(b1.x1, b2.x1),
-		top: Math.min(b1.y1, b2.y1),
-		bottom: Math.max(b1.y2, b2.y2),
-		left: Math.min(b1.x1, b2.x1),
+		d: parts.join(" "),
+		left: Math.min(...boxes.map((b) => b.x1)),
+		width: Math.max(...boxes.map((b) => b.x2)) - Math.min(...boxes.map((b) => b.x1)),
+		top: Math.min(...boxes.map((b) => b.y1)),
+		bottom: Math.max(...boxes.map((b) => b.y2)),
 	};
 }
 
-/** Horizontal lockup group at scale; returns { svg (group), width, height }. */
+/** Horizontal lockup: tile + "KTB Health" (landing proportions: 32px tile, 18px text, 10px gap). */
 function lockup({ inverse = false, markSize = 64 }) {
-	const fontSize = markSize * 0.62;
-	const w = wordmark(fontSize);
-	const textH = w.bottom - w.top;
-	const gap = markSize * 0.3;
-	const textX = markSize + gap - w.left;
-	// Center the glyph box vertically against the mark.
-	const baseline = (markSize - textH) / 2 - w.top;
+	const size = markSize * 0.5625;
+	const w = wordmark(size);
+	const gap = markSize * 0.3125;
+	// Like the browser: the text starts at the flex gap (glyph origin, side
+	// bearing included) and the baseline sits so the line box (font ascent +
+	// descent) is centered on the tile.
+	const textX = markSize + gap;
+	const baseline = markSize / 2 + ((bold.ascender + bold.descender) / 2) * (size / bold.unitsPerEm);
 	const ink = inverse ? COLORS.white : COLORS.ink;
 	const m = inverse ? markInverse : mark;
 	const k = markSize / 64;
 	const svg = `
 	<g transform="scale(${k})">${markSvgInner(m)}</g>
-	<g transform="translate(${textX.toFixed(2)} ${baseline.toFixed(2)})">
-		<path d="${w.ktb}" fill="${ink}"/>
-		<path d="${w.health}" fill="${inverse ? COLORS.white : COLORS.ink}" opacity="${inverse ? 0.88 : 0.82}"/>
-	</g>`;
-	return { svg, width: markSize + gap + w.width, height: markSize };
+	<path transform="translate(${textX.toFixed(2)} ${baseline.toFixed(2)})" d="${w.d}" fill="${ink}"/>`;
+	return { svg, width: markSize + gap + w.left + w.width, height: markSize };
 }
 
 const write = (rel, content) => writeFileSync(join(assets, rel), content.replace(/^\n/, ""));
