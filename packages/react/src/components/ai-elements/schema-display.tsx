@@ -45,11 +45,11 @@ const SchemaDisplayContext = createContext<SchemaDisplayContextType>({
 });
 
 const methodStyles: Record<HttpMethod, string> = {
-	DELETE: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
-	GET: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
-	PATCH: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400",
-	POST: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-	PUT: "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+	DELETE: "bg-destructive/10 text-destructive dark:bg-destructive/20",
+	GET: "bg-success/10 text-success dark:bg-success/20",
+	PATCH: "bg-warning/10 text-warning dark:bg-warning/20",
+	POST: "bg-info/10 text-info dark:bg-info/20",
+	PUT: "bg-warning/10 text-warning dark:bg-warning/20",
 };
 
 export type SchemaDisplayHeaderProps = HTMLAttributes<HTMLDivElement>;
@@ -92,7 +92,7 @@ export const SchemaDisplayPath = ({ className, children, ...props }: SchemaDispl
 	// Highlight path parameters
 	const highlightedPath = path.replaceAll(
 		/\{([^}]+)\}/g,
-		'<span class="text-blue-600 dark:text-blue-400">{$1}</span>',
+		'<span class="text-info">{$1}</span>',
 	);
 
 	return (
@@ -157,7 +157,7 @@ export const SchemaDisplayParameter = ({
 			)}
 			{required && (
 				<Badge
-					className="bg-red-100 text-red-700 text-xs dark:bg-red-900/30 dark:text-red-400"
+					className="bg-destructive/10 text-destructive text-xs dark:bg-destructive/20"
 					variant="secondary"
 				>
 					required
@@ -232,7 +232,7 @@ export const SchemaDisplayProperty = ({
 					</Badge>
 					{required && (
 						<Badge
-							className="bg-red-100 text-red-700 text-xs dark:bg-red-900/30 dark:text-red-400"
+							className="bg-destructive/10 text-destructive text-xs dark:bg-destructive/20"
 							variant="secondary"
 						>
 							required
@@ -270,7 +270,7 @@ export const SchemaDisplayProperty = ({
 				</Badge>
 				{required && (
 					<Badge
-						className="bg-red-100 text-red-700 text-xs dark:bg-red-900/30 dark:text-red-400"
+						className="bg-destructive/10 text-destructive text-xs dark:bg-destructive/20"
 						variant="secondary"
 					>
 						required

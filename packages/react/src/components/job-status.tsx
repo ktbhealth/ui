@@ -45,7 +45,7 @@ export const JOB_STATUS_ICONS: Record<JobStatusValue, React.ReactNode> = {
 const JOB_STATUS_PROGRESS: Record<JobStatusValue, string> = {
 	queued: "[&_[data-slot=progress-indicator]]:bg-muted-foreground/40",
 	processing: "[&_[data-slot=progress-indicator]]:bg-primary",
-	done: "[&_[data-slot=progress-indicator]]:bg-green-500",
+	done: "[&_[data-slot=progress-indicator]]:bg-success",
 	failed: "[&_[data-slot=progress-indicator]]:bg-destructive",
 };
 
@@ -56,7 +56,7 @@ const jobStatusVariants = cva(
 			status: {
 				queued: "border-border bg-muted text-muted-foreground",
 				processing: "border-transparent bg-primary text-primary-foreground",
-				done: "border-transparent bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+				done: "border-transparent bg-success/10 text-success dark:bg-success/20",
 				failed:
 					"border-transparent bg-destructive/10 text-destructive focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40",
 			},
@@ -389,7 +389,7 @@ type JobTimelineProps = {
 type JobTimelineStepState = "complete" | "active" | "failed" | "pending";
 
 const JOB_TIMELINE_STEP_STATES: Record<JobTimelineStepState, string> = {
-	complete: "text-green-600 dark:text-green-400",
+	complete: "text-success",
 	active: "text-foreground",
 	failed: "text-destructive",
 	pending: "text-muted-foreground/50",
@@ -432,7 +432,7 @@ function JobTimeline({ status, labels, footer, className }: JobTimelineProps) {
 							{index > 0 ? (
 								<span
 									aria-hidden
-									className={cn("h-px flex-1", previousComplete ? "bg-green-500" : "bg-border")}
+									className={cn("h-px flex-1", previousComplete ? "bg-success" : "bg-border")}
 								/>
 							) : null}
 							<span className={cn("flex shrink-0 items-center", JOB_TIMELINE_STEP_STATES[state])}>

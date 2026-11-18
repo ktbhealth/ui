@@ -1,4 +1,4 @@
-import { computed, inject, provide, ref, type InjectionKey, type Ref } from "vue";
+import { computed, inject, ref, type InjectionKey, type Ref } from "vue";
 import { useMediaQuery } from "@vueuse/core";
 
 export interface SidebarContext {

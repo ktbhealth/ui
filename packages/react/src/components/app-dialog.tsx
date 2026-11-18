@@ -37,20 +37,20 @@ export function Dialog({
 				// click on the backdrop (the dialog element itself) closes it
 				if (e.target === ref.current) onClose();
 			}}
-			className="m-auto w-[min(92vw,26rem)] rounded-2xl border border-neutral-200 bg-white p-0 shadow-2xl backdrop:bg-neutral-900/40 backdrop:backdrop-blur-[2px]"
+			className="m-auto w-[min(92vw,26rem)] rounded-2xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-overlay/40 backdrop:backdrop-blur-[2px]"
 		>
 			<div className="p-6">
 				<div
 					className={`flex size-11 items-center justify-center rounded-full text-xl font-bold ${
-						tone === "success" ? "bg-primary/10 text-primary" : "bg-red-100 text-red-700"
+						tone === "success" ? "bg-success/10 text-success" : "bg-destructive/10 text-destructive"
 					}`}
 				>
 					{tone === "success" ? "✓" : "!"}
 				</div>
 				<h2 className="mt-4 text-lg font-semibold tracking-tight">{title}</h2>
-				<div className="mt-1.5 text-sm leading-relaxed text-neutral-600">{children}</div>
+				<div className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{children}</div>
 			</div>
-			<div className="flex flex-wrap justify-end gap-2 rounded-b-2xl border-t border-neutral-100 bg-neutral-50 px-6 py-3">
+			<div className="flex flex-wrap justify-end gap-2 rounded-b-2xl border-t border-border bg-muted px-6 py-3">
 				{actions}
 			</div>
 		</dialog>

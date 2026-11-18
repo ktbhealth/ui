@@ -1,5 +1,6 @@
 "use client";
 
+/* oxlint-disable arch/no-hardcoded-colors -- the terminal chrome is intentionally always-dark (zinc-950 surface); theme tokens have no fixed-dark surface pair */
 import { Button } from "@ktbhealth/ui/components/button";
 import { cn } from "@ktbhealth/ui/lib/utils";
 import Ansi from "ansi-to-react";
