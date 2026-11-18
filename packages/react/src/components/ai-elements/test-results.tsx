@@ -82,7 +82,7 @@ export const TestResultsSummary = ({ className, children, ...props }: TestResult
 			{children ?? (
 				<>
 					<Badge
-						className="gap-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+						className="gap-1 bg-success/10 text-success dark:bg-success/20"
 						variant="secondary"
 					>
 						<CheckCircle2Icon className="size-3" />
@@ -90,7 +90,7 @@ export const TestResultsSummary = ({ className, children, ...props }: TestResult
 					</Badge>
 					{summary.failed > 0 && (
 						<Badge
-							className="gap-1 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+							className="gap-1 bg-destructive/10 text-destructive dark:bg-destructive/20"
 							variant="secondary"
 						>
 							<XCircleIcon className="size-3" />
@@ -99,7 +99,7 @@ export const TestResultsSummary = ({ className, children, ...props }: TestResult
 					)}
 					{summary.skipped > 0 && (
 						<Badge
-							className="gap-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400"
+							className="gap-1 bg-warning/10 text-warning dark:bg-warning/20"
 							variant="secondary"
 						>
 							<CircleIcon className="size-3" />
@@ -155,8 +155,8 @@ export const TestResultsProgress = ({
 			{children ?? (
 				<>
 					<div className="flex h-2 overflow-hidden rounded-full bg-muted">
-						<div className="bg-green-500 transition-all" style={{ width: `${passedPercent}%` }} />
-						<div className="bg-red-500 transition-all" style={{ width: `${failedPercent}%` }} />
+						<div className="bg-success transition-all" style={{ width: `${passedPercent}%` }} />
+						<div className="bg-destructive transition-all" style={{ width: `${failedPercent}%` }} />
 					</div>
 					<div className="flex justify-between text-muted-foreground text-xs">
 						<span>
@@ -189,10 +189,10 @@ const TestSuiteContext = createContext<TestSuiteContextType>({
 });
 
 const statusStyles: Record<TestStatus, string> = {
-	failed: "text-red-600 dark:text-red-400",
-	passed: "text-green-600 dark:text-green-400",
-	running: "text-blue-600 dark:text-blue-400",
-	skipped: "text-yellow-600 dark:text-yellow-400",
+	failed: "text-destructive",
+	passed: "text-success",
+	running: "text-info",
+	skipped: "text-warning",
 };
 
 const statusIcons: Record<TestStatus, React.ReactNode> = {
@@ -260,10 +260,10 @@ export const TestSuiteStats = ({
 	<div className={cn("ml-auto flex items-center gap-2 text-xs", className)} {...props}>
 		{children ?? (
 			<>
-				{passed > 0 && <span className="text-green-600 dark:text-green-400">{passed} passed</span>}
-				{failed > 0 && <span className="text-red-600 dark:text-red-400">{failed} failed</span>}
+				{passed > 0 && <span className="text-success">{passed} passed</span>}
+				{failed > 0 && <span className="text-destructive">{failed} failed</span>}
 				{skipped > 0 && (
-					<span className="text-yellow-600 dark:text-yellow-400">{skipped} skipped</span>
+					<span className="text-warning">{skipped} skipped</span>
 				)}
 			</>
 		)}
@@ -356,7 +356,7 @@ export const Test = ({ name, status, duration, className, children, ...props }: 
 export type TestErrorProps = HTMLAttributes<HTMLDivElement>;
 
 export const TestError = ({ className, children, ...props }: TestErrorProps) => (
-	<div className={cn("mt-2 rounded-md bg-red-50 p-3 dark:bg-red-900/20", className)} {...props}>
+	<div className={cn("mt-2 rounded-md bg-destructive/10 p-3 dark:bg-destructive/20", className)} {...props}>
 		{children}
 	</div>
 );
@@ -364,7 +364,7 @@ export const TestError = ({ className, children, ...props }: TestErrorProps) => 
 export type TestErrorMessageProps = HTMLAttributes<HTMLParagraphElement>;
 
 export const TestErrorMessage = ({ className, children, ...props }: TestErrorMessageProps) => (
-	<p className={cn("font-medium text-red-700 text-sm dark:text-red-400", className)} {...props}>
+	<p className={cn("font-medium text-destructive text-sm", className)} {...props}>
 		{children}
 	</p>
 );
@@ -373,7 +373,7 @@ export type TestErrorStackProps = HTMLAttributes<HTMLPreElement>;
 
 export const TestErrorStack = ({ className, children, ...props }: TestErrorStackProps) => (
 	<pre
-		className={cn("mt-2 overflow-auto font-mono text-red-600 text-xs dark:text-red-400", className)}
+		className={cn("mt-2 overflow-auto font-mono text-destructive text-xs", className)}
 		{...props}
 	>
 		{children}
