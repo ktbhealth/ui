@@ -51,7 +51,7 @@
         "vue-sonner": "^2.0.9",
       },
       "devDependencies": {
-        "@ktbhealth/workspace": "github:ktbhealth/workspace#v0.1.2@eslint-config-arch",
+        "@ktbhealth/workspace": "github:ktbhealth/workspace#v0.1.4@eslint-config-arch",
         "oxlint": "^1.91.0",
         "typescript": "^5.9.0",
         "vitest": "^3.2.4",
@@ -368,7 +368,7 @@
 
     "@ktbhealth/ui-vue": ["@ktbhealth/ui-vue@workspace:packages/vue"],
 
-    "@ktbhealth/workspace": ["@ktbhealth/workspace@github:ktbhealth/workspace#a6704ed", {}, "ktbhealth-workspace-a6704ed", "sha512-VI2PqDDhFuAJF4IC/EiuBd15PNakmT0U9ceS6OD0mBbUgszN7DJ7QkzzTVc3ncDp6FZE9dIe+gs0wGEkVsVvwg=="],
+    "@ktbhealth/workspace": ["@ktbhealth/workspace@github:ktbhealth/workspace#229eaa3", {}, "ktbhealth-workspace-229eaa3", "sha512-e9dPLAL79PYWOkMeIiMp8IQgNlDg70TwGwgy+/rZwhYNqfi5Y3FiXPFAV0znkRcc4ecjQMAvGtqINMWPpi/uEg=="],
 
     "@mermaid-js/parser": ["@mermaid-js/parser@1.2.1", "", { "dependencies": { "@chevrotain/types": "~11.1.2" } }, "sha512-n12NohV3mrUyUL2o93IgG/ifeW9FTyeJn3zDxkhwa8MJ9Fxg3HQMlA3RiGmD/3UnJvheztkjjQAjA2T4LmUcpw=="],
 

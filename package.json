@@ -89,7 +89,7 @@
 		}
 	},
 	"devDependencies": {
-		"@ktbhealth/workspace": "github:ktbhealth/workspace#v0.1.2@eslint-config-arch",
+		"@ktbhealth/workspace": "github:ktbhealth/workspace#v0.1.4@eslint-config-arch",
 		"oxlint": "^1.91.0",
 		"typescript": "^5.9.0",
 		"vitest": "^3.2.4"
