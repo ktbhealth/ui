@@ -50,20 +50,27 @@ function ColorPicker({
 	const parsedHex = React.useMemo(() => cssColorToHex(value), [value]);
 	const [pickerHex, setPickerHex] = React.useState(parsedHex ?? "#000000");
 	const [text, setText] = React.useState(value);
+	// Hex last emitted by the picker itself — while a parent update is
+	// still in flight (startTransition below), `value` can echo back a
+	// stale color; the guard keeps the picker from snapping backwards
+	// mid-drag.
+	const lastPickerEmit = React.useRef<string | null>(null);
 
 	React.useEffect(() => {
 		setText(value);
 	}, [value]);
 
 	React.useEffect(() => {
-		if (parsedHex !== null) {
+		if (parsedHex !== null && parsedHex !== lastPickerEmit.current) {
+			lastPickerEmit.current = null;
 			setPickerHex(parsedHex);
 		}
 	}, [parsedHex]);
 
 	const commitText = (next: string) => {
+		lastPickerEmit.current = null;
 		setText(next);
-		onChange?.(next);
+		React.startTransition(() => onChange?.(next));
 	};
 
 	return (
@@ -88,8 +95,12 @@ function ColorPicker({
 				<HexColorPicker
 					color={pickerHex}
 					onChange={(hex) => {
+						lastPickerEmit.current = hex;
 						setPickerHex(hex);
-						onChange?.(hex);
+						// Parent updates can be expensive (live token
+						// re-derivation) — keep them off the picker's
+						// critical path so dragging stays smooth.
+						React.startTransition(() => onChange?.(hex));
 					}}
 				/>
 				<Input
