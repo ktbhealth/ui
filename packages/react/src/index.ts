@@ -31,6 +31,7 @@ export * from "./components/card";
 export * from "./components/carousel";
 export * from "./components/chart";
 export * from "./components/checkbox";
+export * from "./components/color-picker";
 export {
 	CodeBlock as AppCodeBlock,
 	CodeBlockHeader as AppCodeBlockHeader,
