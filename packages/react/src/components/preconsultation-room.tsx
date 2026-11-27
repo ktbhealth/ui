@@ -177,7 +177,8 @@ function useMergedLabels(
 /* --------------------------------- header ---------------------------------- */
 
 export interface RoomHeaderProps extends React.ComponentProps<"header"> {
-	physician: PreconsultationPhysician;
+	/** Physician identity block on the right — omit to render only `actions`. */
+	physician?: PreconsultationPhysician;
 	brandName?: React.ReactNode;
 	roomTitle?: React.ReactNode;
 	/** Shown under the physician name (defaults to `physician.credentials`). */
@@ -200,7 +201,7 @@ function RoomHeader({
 	className,
 	...props
 }: RoomHeaderProps) {
-	const initials = physician.initials ?? initialsOf(physician.name);
+	const initials = physician ? (physician.initials ?? initialsOf(physician.name)) : null;
 	return (
 		<header
 			data-slot="preconsultation-room-header"
@@ -225,27 +226,31 @@ function RoomHeader({
 				</span>
 			</div>
 			<div className="flex items-center gap-4">
-				<div className="hidden flex-col text-right leading-tight sm:flex">
-					<span className="text-xs font-semibold lg:text-sm">{physician.name}</span>
-					{physicianMeta ?? physician.credentials ? (
-						<span className="font-mono text-[11px] text-muted-foreground">
-							{physicianMeta ?? physician.credentials}
-						</span>
-					) : null}
-				</div>
-				<div className="relative">
-					<Avatar className="size-9 ring-2 ring-border/60">
-						<AvatarFallback className="bg-primary/15 text-xs font-semibold text-primary">
-							{initials}
-						</AvatarFallback>
-					</Avatar>
-					{connected ? (
-						<span
-							title={connectionLabel}
-							className="absolute -right-0.5 -bottom-0.5 size-2.5 rounded-full bg-success ring-2 ring-background"
-						/>
-					) : null}
-				</div>
+				{physician ? (
+					<>
+						<div className="hidden flex-col text-right leading-tight sm:flex">
+							<span className="text-xs font-semibold lg:text-sm">{physician.name}</span>
+							{physicianMeta ?? physician.credentials ? (
+								<span className="font-mono text-[11px] text-muted-foreground">
+									{physicianMeta ?? physician.credentials}
+								</span>
+							) : null}
+						</div>
+						<div className="relative">
+							<Avatar className="size-9 ring-2 ring-border/60">
+								<AvatarFallback className="bg-primary/15 text-xs font-semibold text-primary">
+									{initials}
+								</AvatarFallback>
+							</Avatar>
+							{connected ? (
+								<span
+									title={connectionLabel}
+									className="absolute -right-0.5 -bottom-0.5 size-2.5 rounded-full bg-success ring-2 ring-background"
+								/>
+							) : null}
+						</div>
+					</>
+				) : null}
 				{actions}
 			</div>
 		</header>
@@ -892,6 +897,10 @@ export interface PreconsultationRoomProps extends React.ComponentProps<"div"> {
 	onAudioSettings?: () => void;
 	/** Extra actions rendered at the far right of the room header. */
 	headerActions?: React.ReactNode;
+	/** Show the physician name+avatar block in the room header (default
+	 * true). Set false when `headerActions` already carries the account
+	 * identity — e.g. a user menu — to avoid a duplicated avatar. */
+	showPhysicianHeader?: boolean;
 	labels?: Partial<PreconsultationRoomLabels>;
 }
 
@@ -926,6 +935,7 @@ function PreconsultationRoom({
 	onSpeakerToggle,
 	onAudioSettings,
 	headerActions,
+	showPhysicianHeader = true,
 	labels,
 	className,
 	...props
@@ -1019,7 +1029,7 @@ function PreconsultationRoom({
 			{...props}
 		>
 			<RoomHeader
-				physician={physician}
+				physician={showPhysicianHeader ? physician : undefined}
 				brandName={t.brandName}
 				roomTitle={t.roomTitle}
 				actions={headerActions}
