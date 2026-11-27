@@ -1017,60 +1017,58 @@ function PreconsultationRoom({
 				roomTitle={t.roomTitle}
 			/>
 
-			<main className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-center overflow-hidden px-6 py-4 lg:px-12 lg:py-6">
-				<div className="grid h-full max-h-[720px] grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:grid-rows-[minmax(0,1fr)] lg:gap-12">
+			<main className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-center overflow-hidden px-6 py-4 lg:px-12 lg:py-4">
+				<div className="grid h-full max-h-[720px] grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
 					{/* left: media preview */}
-					<div className="flex h-full min-h-0 flex-col overflow-y-auto lg:col-span-7">
-						<div className="my-auto flex w-full flex-col items-center">
-							<div className="mb-3 flex w-full items-center justify-between px-1">
-								<ModalitySelector
-									modality={modality}
-									onChange={setModality}
-									labels={labels}
-								/>
-								<PreviewTechTag
-									label={engineLabel}
-									latencyMs={telemetry?.latencyMs}
-									networkTooltip={t.networkStatus}
-								/>
-							</div>
-							<AudioPreviewScreen
-								status={status}
-								latencyLabel={latencyLabel}
-								deviceLabel={resolvedDeviceLabel}
-								deviceDetail={resolvedDeviceDetail}
-								devices={devices}
-								selectedDeviceId={selectedDeviceId}
-								onDeviceChange={onDeviceChange}
-								avatarInitials={physician.initials ?? initialsOf(physician.name)}
-								avatarCaption={`${physician.name} (You)`}
-								micMuted={micMuted}
-								onMicToggle={() => setMicMuted(!micMuted)}
-								onSpeakerToggle={onSpeakerToggle}
-								onAudioSettings={onAudioSettings}
-								vuLevel={vuLevel}
-								onAudioTest={handleAudioTest}
-								testLabel={testButtonLabel}
+					<div className="flex h-full flex-col items-center justify-center lg:col-span-7">
+						<div className="mb-3 flex w-full items-center justify-between px-1">
+							<ModalitySelector
+								modality={modality}
+								onChange={setModality}
 								labels={labels}
-								className="max-h-full"
 							/>
-							<div className="mt-2.5 flex w-full items-center justify-between px-3 text-xs text-muted-foreground">
-								<span className="flex items-center gap-1.5">
-									<MonitorSmartphoneIcon className="size-3.5" />
-									{captureCaption}
-								</span>
-								<Badge variant="outline" className="gap-1.5 border-border/50 font-mono text-[11px]">
-									<ActivityIcon className="size-3" />
-									{engineLabel}
-								</Badge>
-							</div>
+							<PreviewTechTag
+								label={engineLabel}
+								latencyMs={telemetry?.latencyMs}
+								networkTooltip={t.networkStatus}
+							/>
+						</div>
+						<AudioPreviewScreen
+							status={status}
+							latencyLabel={latencyLabel}
+							deviceLabel={resolvedDeviceLabel}
+							deviceDetail={resolvedDeviceDetail}
+							devices={devices}
+							selectedDeviceId={selectedDeviceId}
+							onDeviceChange={onDeviceChange}
+							avatarInitials={physician.initials ?? initialsOf(physician.name)}
+							avatarCaption={`${physician.name} (You)`}
+							micMuted={micMuted}
+							onMicToggle={() => setMicMuted(!micMuted)}
+							onSpeakerToggle={onSpeakerToggle}
+							onAudioSettings={onAudioSettings}
+							vuLevel={vuLevel}
+							onAudioTest={handleAudioTest}
+							testLabel={testButtonLabel}
+							labels={labels}
+							className="max-h-full"
+						/>
+						<div className="mt-2.5 flex w-full items-center justify-between px-3 text-xs text-muted-foreground">
+							<span className="flex items-center gap-1.5">
+								<MonitorSmartphoneIcon className="size-3.5" />
+								{captureCaption}
+							</span>
+							<Badge variant="outline" className="gap-1.5 border-border/50 font-mono text-[11px]">
+								<ActivityIcon className="size-3" />
+								{engineLabel}
+							</Badge>
 						</div>
 					</div>
 
 					{/* right: start card */}
-					<div className="flex h-full min-h-0 flex-col overflow-y-auto lg:col-span-5">
-						<div className="mx-auto my-auto flex w-full max-w-lg flex-col gap-5 lg:mx-0">
-							<h2 className="font-heading text-2xl leading-snug font-bold tracking-tight lg:text-[28px]">
+					<div className="flex h-full flex-col justify-center lg:col-span-5">
+						<div className="mx-auto flex w-full max-w-lg flex-col gap-4 lg:mx-0">
+							<h2 className="font-heading text-2xl leading-snug font-bold tracking-tight">
 								{t.readyTitle}
 							</h2>
 							<PatientQuickCard
