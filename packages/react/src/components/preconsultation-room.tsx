@@ -185,6 +185,8 @@ export interface RoomHeaderProps extends React.ComponentProps<"header"> {
 	/** Connection status dot — `false` hides it. */
 	connected?: boolean;
 	connectionLabel?: string;
+	/** Extra actions rendered at the far right of the header. */
+	actions?: React.ReactNode;
 }
 
 function RoomHeader({
@@ -194,6 +196,7 @@ function RoomHeader({
 	physicianMeta,
 	connected = true,
 	connectionLabel = PRECONSULTATION_ROOM_LABELS.connectionStable,
+	actions,
 	className,
 	...props
 }: RoomHeaderProps) {
@@ -243,6 +246,7 @@ function RoomHeader({
 						/>
 					) : null}
 				</div>
+				{actions}
 			</div>
 		</header>
 	);
@@ -886,6 +890,8 @@ export interface PreconsultationRoomProps extends React.ComponentProps<"div"> {
 	onAudioTest?: () => void;
 	onSpeakerToggle?: () => void;
 	onAudioSettings?: () => void;
+	/** Extra actions rendered at the far right of the room header. */
+	headerActions?: React.ReactNode;
 	labels?: Partial<PreconsultationRoomLabels>;
 }
 
@@ -919,6 +925,7 @@ function PreconsultationRoom({
 	onAudioTest,
 	onSpeakerToggle,
 	onAudioSettings,
+	headerActions,
 	labels,
 	className,
 	...props
@@ -1015,6 +1022,7 @@ function PreconsultationRoom({
 				physician={physician}
 				brandName={t.brandName}
 				roomTitle={t.roomTitle}
+				actions={headerActions}
 			/>
 
 			<main className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-center overflow-hidden px-6 py-4 lg:px-12 lg:py-4">
