@@ -88,6 +88,7 @@ export * from "./components/resizable";
 export * from "./components/rich-text-editor";
 export * from "./components/scroll-area";
 export * from "./components/search-input";
+export * from "./components/searchable-select";
 export * from "./components/select";
 export * from "./components/separator";
 export * from "./components/sheet";
